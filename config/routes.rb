@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root 'users#index'
   resources :todo_items
   resources :todo_lists
   resources :profiles
