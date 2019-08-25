@@ -1,0 +1,25 @@
+Week 2 assignment steps as I am doing them. Started with copy of todolists from week1 completed assignment.
+=============================================================================================================
+1 - Drop all tables
+2 - rails g model user username password_digest
+3 - rake db:migrate
+4 - rails g model profile gender birth_year:integer first_name last_name user:references
+5 - add  has_one :profile to user.rb
+6 - Verified "belongs_to :user" in profile.rb , it was.
+7 - rails g model TodoList list_name list_due_date:date
+8 - rake db:migrate
+9 - rails g migration create_todo_lists_users todo_list:references user:references -f  (this create a todo_lists_users table)
+NOTE: "I did number 9 wrong, no need for join table" - 
+	9A redo: rails g migration add_user_id_to_todo_lists user_id:integer
+ 	9B redo - rake db:migrate
+	
+10 - Add ' belongs_to :user' in todo_list.rb
+11 - Add 'has_many :todo_lists, dependent: :delete_all' to user.rb
+12 - rake db:migrate		
+13 - rails g model TodoItem due_date:date title description:text completed:boolean todo_list:references
+14 - Add 'has_many :todo_item, dependent: :delete_all' to todo_list.rb
+15 - Verify that ' has_many :todo_lists, dependent: :destroy' was in user.rb (dependent part wasn't)
+16 - rake db:migrate
+17 - Add 'has_many :todo_items , through: :todo_lists , source: :todo_items' to user.rb
+18 - 
+

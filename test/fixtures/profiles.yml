@@ -2,12 +2,14 @@
 
 one:
   gender: MyString
-  birth_year: MyString
+  birth_year: 1
   first_name: MyString
   last_name: MyString
+  user_id: 
 
 two:
   gender: MyString
-  birth_year: MyString
+  birth_year: 1
   first_name: MyString
   last_name: MyString
+  user_id: 

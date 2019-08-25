@@ -11,32 +11,47 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190818015744) do
+ActiveRecord::Schema.define(version: 20190825005123) do
 
   create_table "profiles", force: :cascade do |t|
     t.string   "gender"
     t.integer  "birth_year"
     t.string   "first_name"
     t.string   "last_name"
+    t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  add_index "profiles", ["user_id"], name: "index_profiles_on_user_id"
 
   create_table "todo_items", force: :cascade do |t|
     t.date     "due_date"
     t.string   "title"
     t.text     "description"
     t.boolean  "completed"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.integer  "todo_list_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
+
+  add_index "todo_items", ["todo_list_id"], name: "index_todo_items_on_todo_list_id"
 
   create_table "todo_lists", force: :cascade do |t|
     t.string   "list_name"
     t.date     "list_due_date"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+    t.integer  "user_id"
   end
+
+  create_table "todo_lists_users", force: :cascade do |t|
+    t.integer "todo_list_id"
+    t.integer "user_id"
+  end
+
+  add_index "todo_lists_users", ["todo_list_id"], name: "index_todo_lists_users_on_todo_list_id"
+  add_index "todo_lists_users", ["user_id"], name: "index_todo_lists_users_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "username"
